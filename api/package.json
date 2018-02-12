@@ -1,0 +1,21 @@
+{
+  "name": "stack-poc-api",
+  "version": "1.0.0",
+  "description": "This is the api for the proof of concept stack.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/hai5nguy/stack-poc.git"
+  },
+  "author": "Hai Nguyen",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "express-graphql": "^0.6.11",
+    "graphql": "^0.13.0"
+  }
+}

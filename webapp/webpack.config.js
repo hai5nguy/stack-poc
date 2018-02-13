@@ -5,7 +5,6 @@ const webpack = require('webpack')
 
 const config = {
   entry: [
-    'react-hot-loader/patch',
     './src/index.js',
   ],
 
@@ -23,12 +22,20 @@ const config = {
 
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-      },
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       // API_URL: JSON.stringify(package.apiUrl)
     }),
   ]
+}
+
+if (process.env.NODE_ENV !== 'production') {
+  config.entry.unshift('react-hot-loader/patch')
+  config.devServer = {
+    historyApiFallback: true,
+    hot: true,
+    port: 8000
+  }
+  config.plugins.push(new webpack.HotModuleReplacementPlugin())
 }
 
 module.exports = config

@@ -4,7 +4,8 @@
   "description": "This is the web app for the proof of concept stack.",
   "main": "app.js",
   "scripts": {
-    "start": "webpack-dev-server --hot --history-api-fallback",
+    "start": "webpack-dev-server",
+    "deploy": "webpack -p; node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

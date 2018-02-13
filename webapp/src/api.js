@@ -6,8 +6,14 @@ class Api {
     constructor() {
         if (process.env.NODE_ENV !== 'production') return new MockApi()
     }
-    test() {
-        console.log('api.test()')
+    getStuff() {
+        return [
+            'stuff from PRODUCTION api 1',
+            'stuff from PRODUCTION api 2',
+            'stuff from PRODUCTION api 3',
+            'stuff from PRODUCTION api 4',
+            'stuff from PRODUCTION api 5',
+        ]
     }
 }
 

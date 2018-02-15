@@ -1,23 +1,43 @@
-var express = require('express')
-var graphqlHTTP = require('express-graphql')
-var { buildSchema } = require('graphql')
 
-var schema = buildSchema(`
+const express = require('express')
+const graphqlHTTP = require('express-graphql')
+const { buildSchema } = require('graphql')
+
+const Mongo = require('./mongo')
+
+const schema = buildSchema(`
   type Query {
     stuff: [String]
   }
+  type Mutation {
+    addStuff(stuff: String): String
+  }
 `)
 
-var root = { stuff: () => [
-    'stuff 1 from graphql',
-    'stuff 2 from graphql',
-    'stuff 3 from graphql',
-]}
+const root = {
+  stuff: async () => {
+    var results = await Mongo.readMany('stuff', {})
+    return results.map(r => r.value);
+    
+  },
+  addStuff: async ({ stuff }) => {
+    const result = await Mongo.create('stuff', { value: stuff })
+    return result.value
+  }
+}
 
-var app = express()
+const app = express()
 app.use('/graphql', graphqlHTTP({
   schema: schema,
   rootValue: root,
   graphiql: true,
 }))
-app.listen(4000, () => console.log('Now browse to localhost:4000/graphql'));
+
+let port = 4000;
+if (process.env.STACK === undefined) {
+  port = 4001;
+}
+
+app.listen(port, () => console.log(`Now browse to localhost:${port}/graphql`));
+
+

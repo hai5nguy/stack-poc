@@ -5,7 +5,7 @@ const app = express()
 
 app.use('/', express.static(path.resolve(__dirname, 'dist')))
 
-const port = process.env.PORTS || 8000
+const port = process.env.PORTS || 3000
 
 app.listen(port, function () {
     console.log('Web server running on port:', port)

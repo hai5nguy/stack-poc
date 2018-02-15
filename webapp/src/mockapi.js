@@ -2,7 +2,7 @@ class MockApi {
     constructor() {
         console.log('mock api constructor')
     }
-    getStuff() {
+    getStuff = async () => {
         return [
             'stuff from mock api 1',
             'stuff from mock api 2',
@@ -10,9 +10,6 @@ class MockApi {
             'stuff from mock api 4',
             'stuff from mock api 5',
         ]
-    }
-    test() {
-        console.log('mockApi.test()')
     }
 }
 

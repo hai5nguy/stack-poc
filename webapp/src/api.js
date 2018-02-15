@@ -1,19 +1,27 @@
 import MockApi from './mockapi'
 
-let api;
-
 class Api {
     constructor() {
-        if (process.env.NODE_ENV !== 'production') return new MockApi()
+        if (STACK === 'local') return new MockApi()
     }
-    getStuff() {
-        return [
-            'stuff from PRODUCTION api 1',
-            'stuff from PRODUCTION api 2',
-            'stuff from PRODUCTION api 3',
-            'stuff from PRODUCTION api 4',
-            'stuff from PRODUCTION api 5',
-        ]
+    async getStuff() {
+
+        const graph = `
+            query {
+                stuff
+            }
+        `
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/graphql',
+                'Accept': 'application/json'
+            },
+            body: graph
+        });
+        const json = await response.json();
+        
+        return json.data.stuff;
     }
 }
 

@@ -4,6 +4,8 @@ const webpack = require('webpack')
 const stack = process.env.STACK || 'none'
 const apiUrl = process.env.API_URL || 'http://localhost:4000/graphql'
 
+console.log
+
 const config = {
 
   entry: [
@@ -31,7 +33,7 @@ const config = {
 }
 
 if (stack === 'none' || stack === 'development') {
-  config.entry.devtool = 'source-map'
+  config.devtool = 'source-map'
   config.entry.unshift('react-hot-loader/patch')
   config.devServer = {
     historyApiFallback: true,

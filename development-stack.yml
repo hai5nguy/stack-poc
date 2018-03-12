@@ -11,7 +11,7 @@ services:
       replicas: 1
     working_dir: /home/api
     environment:
-      - STACK=production
+      - STACK=development
       - DATABASE_NAME=stack-poc
       - DATABASE_URL=mongodb://mongo:27017/
     volumes:
@@ -43,7 +43,7 @@ services:
       # restart_policy:
       #   condition: on-failure
     environment:
-      - STACK=production
+      - STACK=development
       - API_URL=http://localhost:4000/graphql
     networks:
       - external

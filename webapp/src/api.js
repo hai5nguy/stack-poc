@@ -2,7 +2,7 @@ import MockApi from './mockapi'
 
 class Api {
     constructor() {
-        if (STACK === 'local') return new MockApi()
+        if (STACK === 'none') return new MockApi()
     }
     async getStuff() {
 

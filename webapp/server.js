@@ -8,5 +8,6 @@ app.use('/', express.static(path.resolve(__dirname, 'dist')))
 const port = process.env.PORTS || 3000
 
 app.listen(port, function () {
-    console.log('Web server running on port:', port)
+    console.log('Web server running on port: remove port', port)
 });
+
